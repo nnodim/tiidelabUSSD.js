@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USSD</title>
+</head>
+
+<body>
+    <script>
+        let balance = 100000;
+        let userPin = 1234;
+        if (prompt('Dial *919# to begin') === "*919#") {
+            let choice = prompt(`
+    Welcome to UBA!
+    what do you want to do today:
+    1. Airtime
+    2. Transfer
+    3. Check balance
+    4. loan
+    `)
+            if (choice === "1") {
+                let option = prompt(`
+        select an operation
+        1. Recharge Self
+        2. Recharge Others
+        `)
+                if (option === "1") {
+                    let amount = parseInt(prompt("Enter the amount to recharge:"));
+                    let pin = parseInt(prompt('Enter your PIN:'));
+                    if (pin === userPin) {
+                        if (amount > 0 && amount <= balance) {
+                            alert("Recharge successful!");
+                            balance = balance - amount;
+                        } else if (amount > balance) {
+                            alert("Insufficient balance!");
+                        } else {
+                            alert("Amout must be greater than 0!");
+                        }
+                    } else {
+                        alert("Invalid PIN!");
+                    }
+                } else if (option === "2") {
+                    prompt('Enter reciepient number:');
+                    let amount = parseInt(prompt("Enter the amount to recharge:"));
+                    let pin = parseInt(prompt('Enter your PIN:'));
+                    if (pin === userPin) {
+                        if (amount > 0 && amount <= balance) {
+                            alert("Recharge successful!");
+                            balance = balance - amount;
+                        } else if (amount > balance) {
+                            alert("Insufficient balance!");
+                        } else {
+                            alert("Amout must be greater than 0!");
+                        }
+                    } else {
+                        alert("Invalid PIN!");
+                    }
+                }
+            } else if (choice === "2") {
+                let accNo = prompt("Enter reciepient ACC number:");
+                let bank = prompt(`
+        Choose bank:
+        1. First Bank
+        2. Ecobank
+        `);
+                if (bank === "1") {
+                    let amount = parseInt(prompt("Enter the amount to Transfer:"));
+                    let pin = parseInt(prompt('Enter your PIN:'));
+                    if (pin === userPin) {
+                        if (amount > 0 && amount <= balance) {
+                            alert("Transfer successful!");
+                            balance = balance - amount;
+                        } else if (amount > balance) {
+                            alert("Insufficient balance!");
+                        } else {
+                            alert("Amout must be greater than 0!");
+                        }
+                    } else {
+                        alert("Invalid PIN!");
+                    }
+                } else if (bank === "2") {
+                    alert('Account not found!');
+                }
+            } else if (choice === "3") {
+                let pin = parseInt(prompt('Enter your PIN:'));
+                if (pin === userPin) {
+                    alert(`Balance: $${balance}`);
+                } else {
+                    alert("Invalid PIN!");
+                }
+            } else if (choice === '4') {
+                alert('Loan not available!');
+            }
+        } else {
+            alert("Invalid code!");
+        }
+    </script>
+</body>
+
+</html>
